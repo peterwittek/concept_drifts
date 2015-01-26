@@ -50,9 +50,13 @@ public class MyWordnetStemmer {
 		List<String> stems = wordnetStemmer.findStems(new String(Arrays.copyOfRange(wordBuffer, offset,
 											   wordLen)), null);
 		if (stems.size()>0) {
-			b = stems.get(0).toCharArray();
-			i = stems.get(0).length();
-
+			List<String> stems2 = wordnetStemmer.findStems(stems.get(0), null);
+			if (stems2.size()==0 || stems2.get(0).length()!=stems.get(0).length()) {
+				i = 0;
+			} else {
+				b = stems.get(0).toCharArray();
+				i = stems.get(0).length();
+			}
 		} else {
 			i = 0;
 		}
