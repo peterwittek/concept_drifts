@@ -4,6 +4,7 @@ import static org.apache.lucene.util.RamUsageEstimator.NUM_BYTES_CHAR;
 
 import java.io.File;
 import java.io.IOException;
+import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
@@ -47,8 +48,13 @@ public class MyWordnetStemmer {
 		if (b.length < wordLen) {
 			b = new char[ArrayUtil.oversize(wordLen, NUM_BYTES_CHAR)];
 		}
-		List<String> stems = wordnetStemmer.findStems(new String(Arrays.copyOfRange(wordBuffer, offset,
-											   wordLen)), null);
+		List<String> stems_noun = wordnetStemmer.findStems(new String(Arrays.copyOfRange(wordBuffer, offset,
+											   wordLen)), edu.mit.jwi.item.POS.NOUN);
+		List<String> stems_verb = wordnetStemmer.findStems(new String(Arrays.copyOfRange(wordBuffer, offset,
+											   wordLen)), edu.mit.jwi.item.POS.VERB);
+		List<String> stems = new ArrayList<String>();
+		stems.addAll(stems_noun);
+		stems.addAll(stems_verb);
 		if (stems.size()>0) {
 			List<String> stems2 = wordnetStemmer.findStems(stems.get(0), null);
 			if (stems2.size()==0 || stems2.get(0).length()!=stems.get(0).length()) {
