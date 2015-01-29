@@ -41,14 +41,15 @@ public class LuceneIndexer {
 	 */
 	public static void main(String[] args) throws Exception {
 		logger.setLevel(Level.INFO);
-		String corpusDirectory = "data/sample";
-		String indexDirectory = "data/sample_index";
-		indexSingleFile(corpusDirectory + "/books909.txt", indexDirectory);
+		String corpusDirectory = "data";
+		String indexDirectory = "data/index";
+		indexSingleFile(corpusDirectory + "/books.txt", indexDirectory);
 		getIndexTerms(indexDirectory);
 	}
 
 	public static void indexSingleFile(String filename, String indexDirectory)
 			throws IOException {
+		AmazonReview amazonReview = new AmazonReview(868320000);
 		Analyzer analyzer = new WordnetAnalyzer();
 		IndexWriterConfig indexConfig = new IndexWriterConfig(LUCENE_VERSION,
 				analyzer);
@@ -56,10 +57,10 @@ public class LuceneIndexer {
 				indexDirectory)), indexConfig);
 		Scanner scanner = new Scanner(new BufferedReader(new InputStreamReader(
 				new FileInputStream(filename))));
-		Document doc = AmazonReview.Document(scanner);
+		Document doc = amazonReview.Document(scanner);
 		while (doc != null) {
 			writer.addDocument(doc);
-			doc = AmazonReview.Document(scanner);
+			doc = amazonReview.Document(scanner);
 		}
 		writer.commit();
 		logger.info("Number of documents: " + writer.numDocs());
