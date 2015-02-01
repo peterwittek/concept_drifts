@@ -15,7 +15,7 @@ Indexing
 --------
 The class concepDrifts.LuceneIndexer with setting the parameters in the ``main()`` function. The ``runIndexer`` static method takes an integer cut-off value. This defines the end of the time period in Unix time until which the documents should be indexed (not inclusive). To obtain a roughly even cut in three periods, we used 1043884800, 1217721600 and ``Integer.MAX_VALUE``.
 
-Indexing takes a few hours. At the end of it, we had three folders: ``data/index{1,2,3}``.
+Indexing takes a few hours. At the end of it, we should have three folders: ``data/index{1,2,3}``.
 
 Generating the reflexive random indices
 ---------------------------------------
@@ -30,7 +30,7 @@ We build the reflexive random indices in the data folder. This is a memory-bound
     mv termvectors2.bin termvectorsperiod2.bin
     mv docvectors2.bin docvectorsperiod2.bin
 
-    java -Xmx22000m -Xmx14500m pitt.search.semanticvectors.BuildIndex -trainingcycles 2 -initialtermvectors termvectorsperiod2 -luceneindexpath index3
+    java -Xmx22000m pitt.search.semanticvectors.BuildIndex -trainingcycles 2 -initialtermvectors termvectorsperiod2 -luceneindexpath index3
     mv termvectors2.bin termvectorsperiod3.bin
     mv docvectors2.bin docvectorsperiod3.bin
 
