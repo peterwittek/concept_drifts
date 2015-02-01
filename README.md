@@ -72,3 +72,7 @@ somoclu -k 2 -m toroid -s 1 -x 253 -y 143 data/termvectorsperiod1.svm data/termv
 somoclu -k 2 -m toroid -s 1 -x 253 -y 143 data/termvectorsperiod2.svm data/termvectorsperiod2
 somoclu -k 2 -m toroid -s 1 -x 253 -y 143 data/termvectorsperiod3.svm data/termvectorsperiod3
 ```
+
+Acknowledgment
+===
+This work was supported by the European Commission Seventh Framework Programme under Grant Agreement Number FP7-601138 PERICLES.
