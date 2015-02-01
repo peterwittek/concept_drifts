@@ -49,7 +49,7 @@ Then we transform the random index to suitable input files for Somoclu and ESOM 
 
 Training the emergent self-organizing maps
 ------------------------------------------
-For Somoclu versions prior to 1.4.1, change the function ``getWeight`` in mapDistanceFunctions.cpp of Somoclu to remove the compact support. This will yield smoother maps:
+For [Somoclu](https://peterwittek.github.io/somoclu/) versions prior to 1.4.1, change the function ``getWeight`` in mapDistanceFunctions.cpp of Somoclu to remove the compact support. This will yield smoother maps:
 
 ```cpp
 float getWeight(float distance, float radius, float scaling)
@@ -65,7 +65,7 @@ float getWeight(float distance, float radius, float scaling)
 }
 ```
 
-Compile Somoclu and train the emergent self-organizing map:
+Release 1.4.1 defaults to this behaviour. Compile Somoclu and train the emergent self-organizing maps:
 
 ```bash
 somoclu -k 2 -m toroid -s 1 -x 253 -y 143 data/termvectorsperiod1.svm data/termvectorsperiod1
