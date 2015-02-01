@@ -41,15 +41,15 @@ public class LuceneIndexer {
 	 */
 	public static void main(String[] args) throws Exception {
 		logger.setLevel(Level.INFO);
-		String corpusDirectory = "data";
-		String indexDirectory = "data/index";
-		indexSingleFile(corpusDirectory + "/books.txt", indexDirectory);
+		String corpus = "data/books.txt";
+		String indexDirectory = "data/index1";
+		runIndexer(corpus, indexDirectory, 1098403200);
 		getIndexTerms(indexDirectory);
 	}
 
-	public static void indexSingleFile(String filename, String indexDirectory)
+	public static void runIndexer(String filename, String indexDirectory, int cutoff)
 			throws IOException {
-		AmazonReview amazonReview = new AmazonReview(868320000);
+		AmazonReview amazonReview = new AmazonReview(cutoff);
 		Analyzer analyzer = new WordnetAnalyzer();
 		IndexWriterConfig indexConfig = new IndexWriterConfig(LUCENE_VERSION,
 				analyzer);

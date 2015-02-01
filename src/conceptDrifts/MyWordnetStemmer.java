@@ -25,7 +25,7 @@ public class MyWordnetStemmer {
 	  
 	  
 	public MyWordnetStemmer() {
-		String path = "/usr/share/wordnet/dict";
+		String path = "dict";
 		dict = new RAMDictionary(new File(path), ILoadPolicy.IMMEDIATE_LOAD);
 		try {
 			dict.open();
