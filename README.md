@@ -26,7 +26,7 @@ We build the reflexive random indices in the data folder. This is a memory-bound
     mv termvectors2.bin termvectorsperiod1.bin
     mv docvectors2.bin docvectorsperiod1.bin
 
-    java -Xmx22000m pitt.search.semanticvectors.BuildIndex -trainingcycles 2 -initialtermvectors termvectorsperiod1 -docindexing DocIndexingStrategy.INCREMENTAL -luceneindexpath index2
+    java -Xmx22000m pitt.search.semanticvectors.BuildIndex -trainingcycles 2 -initialtermvectors termvectorsperiod1 -luceneindexpath index2
     mv termvectors2.bin termvectorsperiod2.bin
     mv docvectors2.bin docvectorsperiod2.bin
 
