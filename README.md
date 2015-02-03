@@ -19,18 +19,18 @@ Indexing takes a few hours. At the end of it, we should have three folders: ``da
 
 Generating the reflexive random indices
 ---------------------------------------
-We build the reflexive random indices in the data folder. This is a memory-bound step.
+We build the reflexive random indices in the data folder. This is a memory-bound step and it requires about 30GByte of RAM.
 
     cd data
-    java -Xmx22000m pitt.search.semanticvectors.BuildIndex -trainingcycles 2 -luceneindexpath index1
+    java -Xmx40000m pitt.search.semanticvectors.BuildIndex -trainingcycles 2 -luceneindexpath index1
     mv termvectors2.bin termvectorsperiod1.bin
     mv docvectors2.bin docvectorsperiod1.bin
 
-    java -Xmx22000m pitt.search.semanticvectors.BuildIndex -trainingcycles 2 -initialtermvectors termvectorsperiod1 -luceneindexpath index2
+    java -Xmx40000m pitt.search.semanticvectors.BuildIndex -trainingcycles 2 -initialtermvectors termvectorsperiod1 -luceneindexpath index2
     mv termvectors2.bin termvectorsperiod2.bin
     mv docvectors2.bin docvectorsperiod2.bin
 
-    java -Xmx22000m pitt.search.semanticvectors.BuildIndex -trainingcycles 2 -initialtermvectors termvectorsperiod2 -luceneindexpath index3
+    java -Xmx40000m pitt.search.semanticvectors.BuildIndex -trainingcycles 2 -initialtermvectors termvectorsperiod2 -luceneindexpath index3
     mv termvectors2.bin termvectorsperiod3.bin
     mv docvectors2.bin docvectorsperiod3.bin
 
