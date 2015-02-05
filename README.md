@@ -6,10 +6,10 @@ The aim of this project is to analyse semantic consistency using emergent self-o
 First, obtain the [data set](http://snap.stanford.edu/data/amazon/amazon_readme.txt), and clone this repository. The outline of the processing steps is as follows:
 
 1. Index the subsequent time periods by Lucene.
-2. Build reflexive random indices.
+2. Build random indices.
 3. Train emergent self-organizing maps.
 
-The rest of this readme details these steps. The dependencies for the Java tools are lucene-core-4.10.3.jar, lucene-analyzers-common-4.10.3.jar, and edu.mit.jwi_2.3.3.jar, and semanticvectors-5.6.jar. It is assumed that they are in the ``CLASSPATH``.
+The rest of this readme details these steps. The dependencies for the Java tools are lucene-core-4.10.3.jar, lucene-analyzers-common-4.10.3.jar, and edu.mit.jwi_2.3.3.jar, and [SemanticVectors development version](https://code.google.com/p/semanticvectors/source/checkout), in which the random seed is set to a fixed value. It is assumed that the jars are in the ``CLASSPATH``.
 
 Indexing
 --------
@@ -17,20 +17,20 @@ The class concepDrifts.LuceneIndexer with setting the parameters in the ``main()
 
 Indexing takes a few hours. At the end of it, we should have three folders: ``data/index{1,2,3}``.
 
-Generating the reflexive random indices
+Generating the random indices
 ---------------------------------------
-We build the reflexive random indices in the data folder. This is a memory-bound step and it requires about 30GByte of RAM.
+We build the random indices in the data folder. This is a memory-bound step and it requires about 30GByte of RAM.
 
     cd data
-    java -Xmx40000m pitt.search.semanticvectors.BuildIndex -trainingcycles 2 -luceneindexpath index1
+    java -Xmx40000m pitt.search.semanticvectors.BuildIndex -luceneindexpath index1
     mv termvectors2.bin termvectorsperiod1.bin
     mv docvectors2.bin docvectorsperiod1.bin
 
-    java -Xmx40000m pitt.search.semanticvectors.BuildIndex -trainingcycles 2 -initialtermvectors termvectorsperiod1 -luceneindexpath index2
+    java -Xmx40000m pitt.search.semanticvectors.BuildIndex -luceneindexpath index2
     mv termvectors2.bin termvectorsperiod2.bin
     mv docvectors2.bin docvectorsperiod2.bin
 
-    java -Xmx40000m pitt.search.semanticvectors.BuildIndex -trainingcycles 2 -initialtermvectors termvectorsperiod2 -luceneindexpath index3
+    java -Xmx40000m pitt.search.semanticvectors.BuildIndex -luceneindexpath index3
     mv termvectors2.bin termvectorsperiod3.bin
     mv docvectors2.bin docvectorsperiod3.bin
 
@@ -69,8 +69,8 @@ Release 1.4.1 defaults to this behaviour. Compile Somoclu and train the emergent
 
 ```bash
 somoclu -k 2 -m toroid -s 1 -x 253 -y 143 data/termvectorsperiod1.svm data/termvectorsperiod1
-somoclu -k 2 -m toroid -s 1 -x 253 -y 143 data/termvectorsperiod2.svm data/termvectorsperiod2
-somoclu -k 2 -m toroid -s 1 -x 253 -y 143 data/termvectorsperiod3.svm data/termvectorsperiod3
+somoclu -k 2 -m toroid -c data/termvectorsperiod1.wts -s 1 -x 253 -y 143 data/termvectorsperiod2.svm data/termvectorsperiod2
+somoclu -k 2 -m toroid -c data/termvectorsperiod2.wts -s 1 -x 253 -y 143 data/termvectorsperiod3.svm data/termvectorsperiod3
 ```
 
 Acknowledgment
