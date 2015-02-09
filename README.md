@@ -1,7 +1,11 @@
 Demonstrating concept drifts in Amazon book reviews
 ===================================================
 
-The aim of this project is to analyse semantic consistency using emergent self-organizing maps and study how consistency changes over time. We use a corpus spanning eighteen years and consisting of 12.5 million entries. 
+The aim of this project is to analyse semantic consistency using emergent self-organizing maps and study how consistency changes over time. The results are detailed in this manuscript:
+
+P. Wittek, S. Darányi, E. Kontopoulos, T. Moysiadis and I. Kompatsiaris. Monitoring term drift based on semantic consistency in an evolving vector field. [arXiv:1502.01753](http://arxiv.org/abs/1502.01753), 2015.
+
+We use a corpus spanning eighteen years and consisting of 12.5 million entries. 
 
 First, obtain the [data set](http://snap.stanford.edu/data/amazon/amazon_readme.txt), and clone this repository. The outline of the processing steps is as follows:
 
