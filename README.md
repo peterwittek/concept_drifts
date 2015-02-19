@@ -77,6 +77,20 @@ somoclu -k 2 -m toroid -c data/termvectorsperiod1.wts -s 1 -x 253 -y 143 data/te
 somoclu -k 2 -m toroid -c data/termvectorsperiod2.wts -s 1 -x 253 -y 143 data/termvectorsperiod3.svm data/termvectorsperiod3
 ```
 
+Analysing drifts on the toroid surface
+--------------------------------------
+The Python script trackBmus.py helps finding evolving clusters. The script identifies words which shift only a little (threshold1) between the first two periods -- this a candidate set. Then it tries to find
+clusters in the candidate set, that is, words that are close according to some threshold2. The output is as follows:
+
+First column: word in the candidate set (word1)
+Second column: another word in the candidate set close to the first one
+(word2)
+Third column: position of word1 in ESOM period 1.
+Fourth column: position of word2 in ESOM period 1.
+Fifth column: position of word1 in ESOM period 2.
+Sixth column: position of word1 in ESOM period 3.
+
+
 Acknowledgment
 ===
 This work was supported by the European Commission Seventh Framework Programme under Grant Agreement Number FP7-601138 PERICLES.

@@ -41,8 +41,8 @@ public class LuceneIndexer {
 	 */
 	public static void main(String[] args) throws Exception {
 		logger.setLevel(Level.INFO);
-		String corpus = "data/books.txt";
-		String indexDirectory = "data/index1";
+		String corpus = "data/books909.txt";
+		String indexDirectory = "data/index-sample";
 		runIndexer(corpus, indexDirectory, 1098403200);
 		getIndexTerms(indexDirectory);
 	}
