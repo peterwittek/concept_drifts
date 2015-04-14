@@ -5,11 +5,11 @@ import java.util.Scanner;
 import org.apache.lucene.document.Document;
 import org.apache.lucene.document.Field;
 
-public class AmazonReview {
+public class AmazonReviewDocument {
 
 	private int cutoff;
 	
-	public AmazonReview(int cutoff) {
+	public AmazonReviewDocument(int cutoff) {
 		this.cutoff = cutoff;
 	}
 	
