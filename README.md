@@ -17,7 +17,7 @@ The rest of this readme details these steps. The dependencies for the Java tools
 
 Indexing
 --------
-The class concepDrifts.AmazonReviewIndexer with setting the parameters in the ``main()`` function. The ``runIndexer`` static method takes an integer cut-off value. This defines the end of the time period in Unix time until which the documents should be indexed (not inclusive). To obtain a roughly even cut in three periods, we used 1043884800, 1217721600 and ``Integer.MAX_VALUE``.
+The class ``concepDrifts.AmazonReviewIndexer`` with setting the parameters in the ``main()`` function. The ``runIndexer`` static method takes an integer cut-off value. This defines the end of the time period in Unix time until which the documents should be indexed (not inclusive). To obtain a roughly even cut in three periods, we used 1043884800, 1217721600 and ``Integer.MAX_VALUE``.
 
 Indexing takes a few hours. At the end of it, we should have three folders: ``data/index{1,2,3}``.
 
