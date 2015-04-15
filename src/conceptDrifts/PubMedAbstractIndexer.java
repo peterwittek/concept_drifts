@@ -91,7 +91,6 @@ public class PubMedAbstractIndexer {
 			String tmp = s.next();
 			tmp = tmp.toLowerCase();
 			if (!tmp.equals("")) {
-				System.out.println(tmp);
 				words.add(tmp);
 			}
 		}
