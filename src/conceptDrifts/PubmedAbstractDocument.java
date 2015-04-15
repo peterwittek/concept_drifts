@@ -16,6 +16,9 @@ public class PubmedAbstractDocument {
 		while (scanner.hasNextLine()) {
 			String line = scanner.nextLine();
 			int startIndex = line.indexOf("\"");
+			if (startIndex < 0) {
+				startIndex = line.indexOf("	");
+			}
 			id = line.substring(0, startIndex);
 			Document doc = new Document();
 			doc.add(new Field("path", id, Field.Store.YES,

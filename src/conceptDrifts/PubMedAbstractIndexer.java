@@ -43,11 +43,11 @@ public class PubMedAbstractIndexer {
 	 */
 	public static void main(String[] args) throws Exception {
 		logger.setLevel(Level.INFO);
-		String corpus = "data/inab/abstracts_subset.txt";
+		String corpus = "data/inab/abstracts.txt";
 		String keywordFile = "data/inab/keywords.txt";
-		String indexDirectory = "data/inab/index_sample";
+		String indexDirectory = "data/inab/index";
 		runIndexer(corpus, keywordFile, indexDirectory);
-
+		getIndexTerms(indexDirectory);
 	}
 
 	public static void runIndexer(String filename, String keywordFile, String indexDirectory)
@@ -91,6 +91,7 @@ public class PubMedAbstractIndexer {
 			String tmp = s.next();
 			tmp = tmp.toLowerCase();
 			if (!tmp.equals("")) {
+				System.out.println(tmp);
 				words.add(tmp);
 			}
 		}
@@ -99,4 +100,27 @@ public class PubMedAbstractIndexer {
 		return words;
 	}
 
+	/**
+	 * Gets the index terms and writes them in the index directory.
+	 * 
+	 * @throws Exception
+	 *             the exception
+	 */
+	public static void getIndexTerms(String luceneIndexDirectory)
+			throws Exception {
+		File file = new File(luceneIndexDirectory);
+		IndexReader indexReader = IndexReader.open(FSDirectory.open(file));
+		Fields fields = MultiFields.getFields(indexReader);
+		Terms terms = fields.terms("contents");
+		TermsEnum termsEnum = terms.iterator(null);
+		BytesRef text;
+		BufferedWriter out = new BufferedWriter(new FileWriter(new File(
+				luceneIndexDirectory + "/indexTerms.txt")));
+		while ((text = termsEnum.next()) != null) {
+			out.write(text.utf8ToString() + "\n");
+		}
+		out.close();
+		indexReader.close();
+	}
+	
 }
