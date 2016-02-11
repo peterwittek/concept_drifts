@@ -43,9 +43,10 @@ public class PubMedAbstractIndexer {
 	 */
 	public static void main(String[] args) throws Exception {
 		logger.setLevel(Level.INFO);
+		String suffix = "p53";
 		String corpus = "data/inab/abstracts.txt";
-		String keywordFile = "data/inab/keywords.txt";
-		String indexDirectory = "data/inab/index";
+		String keywordFile = "data/inab/keywords"+suffix+".txt";
+		String indexDirectory = "data/inab/index"+suffix;
 		runIndexer(corpus, keywordFile, indexDirectory);
 		getIndexTerms(indexDirectory);
 	}
